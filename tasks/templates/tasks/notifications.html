@@ -1,0 +1,23 @@
+<!-- Add this to your HTML file -->
+<script>
+    const userId = /* Your logic to get the user ID */;
+    const wsUrl = `ws://${window.location.host}/ws/notifications/`;
+
+    const socket = new WebSocket(wsUrl);
+
+    socket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        const message = data.message;
+
+        // Handle the notification (e.g., display it to the user)
+        console.log("New notification:", message);
+    };
+
+    socket.onopen = function(e) {
+        console.log("WebSocket connection opened.");
+    };
+
+    socket.onclose = function(e) {
+        console.log("WebSocket connection closed.");
+    };
+</script>
